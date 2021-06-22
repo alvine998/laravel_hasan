@@ -1,0 +1,181 @@
+body {
+  background-color: #E4E6EB;
+  font-family: 'Assistant', sans-serif;
+}
+
+body h3 {
+  font-family: 'Assistant', sans-serif;
+  color: #0825c9ec;
+  margin-top: 10px;
+}
+
+.navbar-brand img {
+  max-height: 40px;
+}
+
+.navbar-light {
+  background-color: whitesmoke;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #0825c9ec;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: rgba(251, 255, 9, 0.973);
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+  font-weight: bold;
+  color: #0825c9ec !important;
+}
+
+.btn-navbar-right {
+  margin-top: -10px !important;
+  height: 70px;
+  margin-bottom: -10px !important;
+  margin-right: -18px !important;
+  border-radius: 0;
+}
+
+.btn-login {
+  background-color: #0825c9ec;
+  color: rgba(251, 255, 9, 0.973);
+  font-weight: bold;
+}
+
+.btn-login:hover {
+  background-color: #2942d1f5;
+  color: rgba(251, 255, 9, 0.973);
+}
+
+header {
+  margin-top: -70px;
+  padding: 300px 0px 300px;
+  background: linear-gradient(45deg, rgba(47, 52, 100, 0.521) 0%, rgba(15, 28, 214, 0.9) 100%), url(../images/hihi.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+header h1, header h2 {
+  color: whitesmoke;
+}
+
+header h1, header h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+}
+
+header hr {
+  border-color: rgba(251, 255, 9, 0.973);
+  border-width: 3px;
+  max-width: 50px;
+}
+
+header .btn-get-started {
+  font-family: 'Assistant', sans-serif;
+  background: linear-gradient(45deg, rgba(28, 78, 240, 0.877) 0%, rgba(15, 28, 214, 0.9) 100%);
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 50px 10px 28px;
+  color: rgba(251, 255, 9, 0.973);
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+  width: 150px;
+  border-radius: 100px;
+  font-weight: bold;
+}
+
+header .btn-get-started:hover,
+header .btn-get-started:focus,
+header .btn-get-started.focus,
+header .btn-get-started:active,
+header .btn-get-started.active,
+header .open > .btn-get-started {
+  color: rgba(251, 255, 9, 0.973);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(15, 28, 214, 0.9)), to(rgba(28, 78, 240, 0.877)));
+  background: linear-gradient(180deg, rgba(15, 28, 214, 0.9) 0%, rgba(28, 78, 240, 0.877) 100%);
+}
+
+section {
+  padding: 100px 0;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+/*--------------------------------------------------------------
+# About
+--------------------------------------------------------------*/
+.about {
+  padding: 120px 0;
+}
+
+.about hr {
+  border-color: #0825c9ec;
+  border-width: 3px;
+}
+
+.section-heading {
+  font-family: 'Assistant', sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+  color: #2c4964;
+  text-align: center;
+  margin-top: 0;
+}
+
+.light {
+  border-width: 3px;
+  max-width: 50px;
+}
+
+.about .content h3 {
+  font-weight: 600;
+  font-size: 40px;
+  color: #2c4964;
+}
+
+.about .content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about .content ul li {
+  padding-bottom: 10px;
+  font-size: 20px;
+  padding-right: 4px;
+  color: #5846f9;
+}
+
+.about img {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.about .content p:last-child {
+  margin-bottom: 0;
+}
+
+.about .content .read-more {
+  font-family: 'Assistant', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 50px 10px 28px;
+  border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  color: #fff;
+  background: linear-gradient(45deg, rgba(47, 52, 100, 0.521) 0%, rgba(15, 28, 214, 0.9) 100%);
+  position: relative;
+}
+
+.about .content .read-more:hover {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(15, 28, 214, 0.9)), to(rgba(47, 52, 100, 0.521)));
+  background: linear-gradient(180deg, rgba(15, 28, 214, 0.9) 0%, rgba(47, 52, 100, 0.521) 100%);
+}
+/*# sourceMappingURL=main.css.map */
