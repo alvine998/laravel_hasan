@@ -14,3 +14,13 @@
     <!-- Page level custom scripts -->
     <script src="{{ url('backend/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ url('backend/js/demo/chart-pie-demo.js') }}"></script>
+
+    <!-- Data table-->
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script> 
+    $(document).ready( function () {
+    $('#admintable1').DataTable();
+    } );
+    </script>
+    
+    

@@ -41,9 +41,9 @@ return [
             'provider' => 'users',
         ],
         
-        'customtable' => [
+        'pengguna' => [
             'driver' => 'session',
-            'provider' => 'customtables',
+            'provider' => 'penggunas',
         ],
 
         'api' => [
@@ -70,12 +70,8 @@ return [
     |
     */
     'providers' => [
-        'users' => [
         
-            'driver' => 'eloquent',
-            'model' => App\Models\user::class,
-        ],
-        'customtables' => [
+        'penggunas' => [
         
             'driver' => 'eloquent',
             'model' => App\Models\tb_pengguna::class,
@@ -109,6 +105,7 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        
     ],
 
     /*

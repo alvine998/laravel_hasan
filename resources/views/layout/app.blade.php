@@ -21,7 +21,7 @@
     <!-- nav niju -->
     <div class="container">
         <nav class="row navbar navbar-expand-lg navbar-light">
-            <a href="home" class="navbar-brand">
+            <a href="{{ route('home') }}" class="navbar-brand">
             <img src="{{ url('forntend/images/imageedit_4_9087602155.png')}}" alt="logo NIJU" width="100px" height="100px">
         </a>
         <h3><b>PT. NUSA INDAH JAYA UTAMA</b></h3>
@@ -48,7 +48,7 @@
                 </form>
 
                 <!--desktop-->
-                <form action="{{ route('login') }}" class="form-inline my-2 my-lg-0 d-none d-md-block">
+                <form action="{{ route('login_pengguna') }}" class="form-inline my-2 my-lg-0 d-none d-md-block">
                     <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4">
                     login
                     </button>
@@ -83,14 +83,10 @@
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right">
             <h3>Sistem Informasi Laporan Harian Produksi</h3>
             <hr/>
-            <p class="font-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
             <ul>
-              <li> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+              <li> Sistem informasi laporan harian produksi ditujukan kepada Departen Produksi PT Nusa Indah Jaya Utama.</li>
+              <li> Dimana sistem ini dapat membantu proses laporan harian produksi pada PT Nusa Indah Jaya Utama.</li>
+              <li> Pada sistem informasi laporan harian produksi terdapat fitur-fitur penunjang yang dapat membantu proses laporan harian produksi pada PT Nusa Indah Jaya Utama.</li>
             </ul>
             <a href="#" class="read-more px-4 mt-4">Customers</i></a>
           </div>

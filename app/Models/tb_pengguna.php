@@ -11,7 +11,7 @@ class tb_pengguna extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-
+    protected $primaryKey = 'id_pengguna';
     /**
      * The attributes that are mass assignable.
      *
@@ -25,7 +25,7 @@ class tb_pengguna extends Authenticatable
         'password',
         'roles',
     ];
-
+   
     /**
      * The attributes that should be hidden for arrays.
      *

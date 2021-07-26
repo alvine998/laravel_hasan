@@ -17,17 +17,19 @@ class Cek_login
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        $pgw = Auth::guard('customtable')->user();
+        $pgw = Auth::guard('pengguna')->user();
+        $noneuser = Auth::guard('pengguna')->user(null);
 
-        if ($pgw->roles == "Admin") {
-            if (!Auth::guard('customtable')->check()) {
-                return redirect('login');
+
+        if ($pgw->roles == "Admin" ||  $pgw->roles == "Operational Manager" || $pgw->roles == "PPC" || $pgw->roles == "Produksi") 
+        {
+            if (!Auth::guard('pengguna')->check()) {
+                return redirect('login_pengguna');
             }
             if ($pgw->roles == $role) {
                 return $next($request);
             }
-
-            return redirect()->route('login')->with('error',"Kamu gak punya akses yaaa..");
+            return redirect()->route('login_pengguna')->with('error',"Kamu gak punya akses yaaa..");
         }
     }
 }
