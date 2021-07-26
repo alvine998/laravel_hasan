@@ -17,14 +17,14 @@ use App\Http\Controllers\dashboardcontoller;
 
 
 Route::get('/', 'homecontroller@index')
-    ->name('home'); 
+    ->name('home');
 
 
 //LOGINLOGOUT
-Route::get('/admin', 'dashboardcontroller@index')->name('dashboard');
-Route::get('/operational-manager', 'dashboardopcontroller@index')->name('dashboard-op');
-Route::get('/ppc', 'dashboardppccontroller@index')->name('dashboard-ppc');
-Route::get('/produksi', 'dashboardproduksicontroller@index')->name('dashboard-produksi');
+// Route::get('/admin', 'dashboardcontroller@index')->name('dashboard');
+// Route::get('/operational-manager', 'dashboardopcontroller@index')->name('dashboard-op');
+// Route::get('/ppc', 'dashboardppccontroller@index')->name('dashboard-ppc');
+// Route::get('/produksi', 'dashboardproduksicontroller@index')->name('dashboard-produksi');
 
 Route::post('/logout', [logincontroller::class, 'logout'])->name('logout');
 Route::GET('/login', [logincontroller::class, 'showFormLogin'])->name('login_pengguna');
@@ -32,87 +32,154 @@ Route::post('/proses_login',[logincontroller::class, 'masuk'])->name('proses_log
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth:pengguna']], function(){
         Route::group(['middleware' => ['cek_login:Admin']], function () {
-                Route::resource('Admin', logincontroller::class);
+                // Route::resource('Admin', logincontroller::class);
+                Route::get('/admin', 'dashboardcontroller@index')->name('dashboard');
+                //crud pengguna
+                Route::get('/pengguna', 'penggunacontroller@index')->name('pengguna');
+                Route::get('/tambah-pengguna', 'penggunacontroller@create')->name('tambah-pengguna');
+                Route::post('/simpan-pengguna', 'penggunacontroller@store')->name('simpan-pengguna');
+                Route::get('/edit-pengguna/{id_pengguna}', 'penggunacontroller@edit')->name('edit-pengguna');
+                Route::put('/update-pengguna/{id_pengguna}', 'penggunacontroller@update')->name('update-pengguna');
+                Route::delete('/hapus-pengguna/{id_pengguna}', 'penggunacontroller@destroy')->name('hapus-pengguna');
+
+                //crud mesin
+                Route::get('/mesin', 'mesincontroller@index')->name('mesin');
+                Route::get('/tambah-mesin', 'mesincontroller@create')->name('tambah-mesin');
+                Route::post('/simpan-mesin', 'mesincontroller@store')->name('simpan-mesin');
+                Route::get('/edit-mesin/{id_mesin}', 'mesincontroller@edit')->name('edit-mesin');
+                Route::put('/update-mesin/{id_mesin}', 'mesincontroller@update')->name('update-mesin');
+                Route::delete('/hapus-mesin/{id_mesin}', 'mesincontroller@destroy')->name('hapus-mesin');
+
+                //crud komponen
+                Route::get('/komponen', 'komponencontroller@index')->name('komponen');
+                Route::get('/tambah-komponen', 'komponencontroller@create')->name('tambah-komponen');
+                Route::post('/simpan-komponen', 'komponencontroller@store')->name('simpan-komponen');
+                Route::get('/edit-komponen/{id_komponen}', 'komponencontroller@edit')->name('edit-komponen');
+                Route::put('/update-komponen/{id_komponen}', 'komponencontroller@update')->name('update-komponen');
+                Route::delete('/hapus-komponen/{id_komponen}', 'komponencontroller@destroy')->name('hapus-komponen');
+
+                //crud kustomer
+                Route::get('/kustomer', 'kustomercontroller@index')->name('kustomer');
+                Route::get('/tambah-kustomer', 'kustomercontroller@create')->name('tambah-kustomer');
+                Route::post('/simpan-kustomer', 'kustomercontroller@store')->name('simpan-kustomer');
+                Route::get('/edit-kustomer/{id_kustomer}', 'kustomercontroller@edit')->name('edit-kustomer');
+                Route::put('/update-kustomer/{id_kustomer}', 'kustomercontroller@update')->name('update-kustomer');
+                Route::delete('/hapus-kustomer/{id_kustomer}', 'kustomercontroller@destroy')->name('hapus-kustomer');
             });
         Route::group(['middleware' => ['cek_login:Operational Manager']], function () {
-                Route::resource('Operational Manager', logincontroller::class);
+                // Route::resource('Operational Manager', logincontroller::class);
+                Route::get('/operational-manager', 'dashboardopcontroller@index')->name('dashboard-op');
+                //Waktu Standar
+                Route::get('/waktustandar', 'waktustandarcontroller@index')->name('waktu');
+                Route::get('/tambah-waktu', 'waktustandarcontroller@create')->name('tambah-waktu');
+                Route::post('/simpan-waktu', 'waktustandarcontroller@store')->name('simpan-waktu');
+
+                //testAjax
+                Route::get('ubah1',array('as'=>'ubah1','uses'=>'waktustandarcontroller@create'));
+                Route::get('ubah1/ubah1Ajax/{id_mesin}',array('as'=>'ubah1.ajax','uses'=>'waktustandarcontroller@ubah1AJax'));
+                //testout
+                Route::get('/edit-waktu/{id}', 'waktustandarcontroller@edit')->name('edit-waktu');
+                Route::put('/update-waktu/{id}', 'waktustandarcontroller@update')->name('update-waktu');
+                Route::delete('/hapus-waktu/{id}', 'waktustandarcontroller@destroy')->name('hapus-waktu');
+
+                //data perencanaan
+                Route::get('/data-perencanaan', 'datappccontroller@index')->name('data-perencanaan');
+                Route::get('/data-setuju/{id_perencanaan}', 'datappccontroller@setuju')->name('data-setuju');
+                Route::get('/data-tolak/{id_perencanaan}', 'datappccontroller@tolak')->name('data-tolak');
+                Route::get('/data-detail/{id_perencanaan}', 'datappccontroller@show')->name('data-detail');
+
+                //data Serah Terima
+                Route::get('/data-serahterima', 'dataserahterimacontroller@index')->name('data-serahterima');
+                Route::get('/data-setuju-terima/{id}', 'dataserahterimacontroller@setuju')->name('data-setuju-terima');
+                Route::get('/data-tolak-terima/{id}', 'dataserahterimacontroller@tolak')->name('data-tolak-terima');
+                Route::get('/data-detail-terima/{id}', 'dataserahterimacontroller@show')->name('data-detail-terima');
+
+                //data laporan Harian
+                Route::get('/data-laporan', 'datalaporancontroller@index')->name('data-laporan');
+                Route::get('/data-setuju-laporan/{id}', 'datalaporancontroller@setuju')->name('data-setuju-laporan');
+                Route::get('/data-tolak-laporan/{id}', 'datalaporancontroller@tolak')->name('data-tolak-laporan');
+                Route::get('/data-detail-laporan/{id}', 'datalaporancontroller@show')->name('data-detail-laporan');
+
+                Route::get('/grafik-porblem', 'grafikcontroller@index')->name('grafik-problem');
             });
         Route::group(['middleware' => ['cek_login:PPC']], function () {
-                Route::resource('PPC', logincontroller::class);
+                // Route::resource('PPC', logincontroller::class);
+                Route::get('/ppc', 'dashboardppccontroller@index')->name('dashboard-ppc');
             });
          Route::group(['middleware' => ['cek_login:Produksi']], function () {
-                Route::resource('Produksi', logincontroller::class);
-            });   
+                // Route::resource('Produksi', logincontroller::class);
+                Route::get('/produksi', 'dashboardproduksicontroller@index')->name('dashboard-produksi');
+            });
          });
     //ADMIN
-//crud pengguna
-Route::get('/pengguna', 'penggunacontroller@index')->name('pengguna');
-Route::get('/tambah-pengguna', 'penggunacontroller@create')->name('tambah-pengguna');
-Route::post('/simpan-pengguna', 'penggunacontroller@store')->name('simpan-pengguna');
-Route::get('/edit-pengguna/{id_pengguna}', 'penggunacontroller@edit')->name('edit-pengguna');
-Route::put('/update-pengguna/{id_pengguna}', 'penggunacontroller@update')->name('update-pengguna');
-Route::delete('/hapus-pengguna/{id_pengguna}', 'penggunacontroller@destroy')->name('hapus-pengguna');
+// //crud pengguna
+// Route::get('/pengguna', 'penggunacontroller@index')->name('pengguna');
+// Route::get('/tambah-pengguna', 'penggunacontroller@create')->name('tambah-pengguna');
+// Route::post('/simpan-pengguna', 'penggunacontroller@store')->name('simpan-pengguna');
+// Route::get('/edit-pengguna/{id_pengguna}', 'penggunacontroller@edit')->name('edit-pengguna');
+// Route::put('/update-pengguna/{id_pengguna}', 'penggunacontroller@update')->name('update-pengguna');
+// Route::delete('/hapus-pengguna/{id_pengguna}', 'penggunacontroller@destroy')->name('hapus-pengguna');
 
-//crud mesin
-Route::get('/mesin', 'mesincontroller@index')->name('mesin');
-Route::get('/tambah-mesin', 'mesincontroller@create')->name('tambah-mesin');
-Route::post('/simpan-mesin', 'mesincontroller@store')->name('simpan-mesin');
-Route::get('/edit-mesin/{id_mesin}', 'mesincontroller@edit')->name('edit-mesin');
-Route::put('/update-mesin/{id_mesin}', 'mesincontroller@update')->name('update-mesin');
-Route::delete('/hapus-mesin/{id_mesin}', 'mesincontroller@destroy')->name('hapus-mesin');
+// //crud mesin
+// Route::get('/mesin', 'mesincontroller@index')->name('mesin');
+// Route::get('/tambah-mesin', 'mesincontroller@create')->name('tambah-mesin');
+// Route::post('/simpan-mesin', 'mesincontroller@store')->name('simpan-mesin');
+// Route::get('/edit-mesin/{id_mesin}', 'mesincontroller@edit')->name('edit-mesin');
+// Route::put('/update-mesin/{id_mesin}', 'mesincontroller@update')->name('update-mesin');
+// Route::delete('/hapus-mesin/{id_mesin}', 'mesincontroller@destroy')->name('hapus-mesin');
 
-//crud komponen
-Route::get('/komponen', 'komponencontroller@index')->name('komponen');
-Route::get('/tambah-komponen', 'komponencontroller@create')->name('tambah-komponen');
-Route::post('/simpan-komponen', 'komponencontroller@store')->name('simpan-komponen');
-Route::get('/edit-komponen/{id_komponen}', 'komponencontroller@edit')->name('edit-komponen');
-Route::put('/update-komponen/{id_komponen}', 'komponencontroller@update')->name('update-komponen');
-Route::delete('/hapus-komponen/{id_komponen}', 'komponencontroller@destroy')->name('hapus-komponen');
- 
-//crud kustomer
-Route::get('/kustomer', 'kustomercontroller@index')->name('kustomer');
-Route::get('/tambah-kustomer', 'kustomercontroller@create')->name('tambah-kustomer');
-Route::post('/simpan-kustomer', 'kustomercontroller@store')->name('simpan-kustomer');
-Route::get('/edit-kustomer/{id_kustomer}', 'kustomercontroller@edit')->name('edit-kustomer');
-Route::put('/update-kustomer/{id_kustomer}', 'kustomercontroller@update')->name('update-kustomer');
-Route::delete('/hapus-kustomer/{id_kustomer}', 'kustomercontroller@destroy')->name('hapus-kustomer');
+// //crud komponen
+// Route::get('/komponen', 'komponencontroller@index')->name('komponen');
+// Route::get('/tambah-komponen', 'komponencontroller@create')->name('tambah-komponen');
+// Route::post('/simpan-komponen', 'komponencontroller@store')->name('simpan-komponen');
+// Route::get('/edit-komponen/{id_komponen}', 'komponencontroller@edit')->name('edit-komponen');
+// Route::put('/update-komponen/{id_komponen}', 'komponencontroller@update')->name('update-komponen');
+// Route::delete('/hapus-komponen/{id_komponen}', 'komponencontroller@destroy')->name('hapus-komponen');
+
+// //crud kustomer
+// Route::get('/kustomer', 'kustomercontroller@index')->name('kustomer');
+// Route::get('/tambah-kustomer', 'kustomercontroller@create')->name('tambah-kustomer');
+// Route::post('/simpan-kustomer', 'kustomercontroller@store')->name('simpan-kustomer');
+// Route::get('/edit-kustomer/{id_kustomer}', 'kustomercontroller@edit')->name('edit-kustomer');
+// Route::put('/update-kustomer/{id_kustomer}', 'kustomercontroller@update')->name('update-kustomer');
+// Route::delete('/hapus-kustomer/{id_kustomer}', 'kustomercontroller@destroy')->name('hapus-kustomer');
 
 //OPERATIONAL MANAGER
 
-//Waktu Standar
-Route::get('/waktustandar', 'waktustandarcontroller@index')->name('waktu');
-Route::get('/tambah-waktu', 'waktustandarcontroller@create')->name('tambah-waktu');
-Route::post('/simpan-waktu', 'waktustandarcontroller@store')->name('simpan-waktu');
+// //Waktu Standar
+// Route::get('/waktustandar', 'waktustandarcontroller@index')->name('waktu');
+// Route::get('/tambah-waktu', 'waktustandarcontroller@create')->name('tambah-waktu');
+// Route::post('/simpan-waktu', 'waktustandarcontroller@store')->name('simpan-waktu');
 
-//testAjax
-Route::get('ubah1',array('as'=>'ubah1','uses'=>'waktustandarcontroller@create'));
-Route::get('ubah1/ubah1Ajax/{id_mesin}',array('as'=>'ubah1.ajax','uses'=>'waktustandarcontroller@ubah1AJax'));
-//testout
-Route::get('/edit-waktu/{id}', 'waktustandarcontroller@edit')->name('edit-waktu');
-Route::put('/update-waktu/{id}', 'waktustandarcontroller@update')->name('update-waktu');
-Route::delete('/hapus-waktu/{id}', 'waktustandarcontroller@destroy')->name('hapus-waktu');
+// //testAjax
+// Route::get('ubah1',array('as'=>'ubah1','uses'=>'waktustandarcontroller@create'));
+// Route::get('ubah1/ubah1Ajax/{id_mesin}',array('as'=>'ubah1.ajax','uses'=>'waktustandarcontroller@ubah1AJax'));
+// //testout
+// Route::get('/edit-waktu/{id}', 'waktustandarcontroller@edit')->name('edit-waktu');
+// Route::put('/update-waktu/{id}', 'waktustandarcontroller@update')->name('update-waktu');
+// Route::delete('/hapus-waktu/{id}', 'waktustandarcontroller@destroy')->name('hapus-waktu');
 
-//data perencanaan
-Route::get('/data-perencanaan', 'datappccontroller@index')->name('data-perencanaan');
-Route::get('/data-setuju/{id_perencanaan}', 'datappccontroller@setuju')->name('data-setuju');
-Route::get('/data-tolak/{id_perencanaan}', 'datappccontroller@tolak')->name('data-tolak');
-Route::get('/data-detail/{id_perencanaan}', 'datappccontroller@show')->name('data-detail');
+// //data perencanaan
+// Route::get('/data-perencanaan', 'datappccontroller@index')->name('data-perencanaan');
+// Route::get('/data-setuju/{id_perencanaan}', 'datappccontroller@setuju')->name('data-setuju');
+// Route::get('/data-tolak/{id_perencanaan}', 'datappccontroller@tolak')->name('data-tolak');
+// Route::get('/data-detail/{id_perencanaan}', 'datappccontroller@show')->name('data-detail');
 
-//data Serah Terima
-Route::get('/data-serahterima', 'dataserahterimacontroller@index')->name('data-serahterima');
-Route::get('/data-setuju-terima/{id}', 'dataserahterimacontroller@setuju')->name('data-setuju-terima');
-Route::get('/data-tolak-terima/{id}', 'dataserahterimacontroller@tolak')->name('data-tolak-terima');
-Route::get('/data-detail-terima/{id}', 'dataserahterimacontroller@show')->name('data-detail-terima');
+// //data Serah Terima
+// Route::get('/data-serahterima', 'dataserahterimacontroller@index')->name('data-serahterima');
+// Route::get('/data-setuju-terima/{id}', 'dataserahterimacontroller@setuju')->name('data-setuju-terima');
+// Route::get('/data-tolak-terima/{id}', 'dataserahterimacontroller@tolak')->name('data-tolak-terima');
+// Route::get('/data-detail-terima/{id}', 'dataserahterimacontroller@show')->name('data-detail-terima');
 
-//data laporan Harian
-Route::get('/data-laporan', 'datalaporancontroller@index')->name('data-laporan');
-Route::get('/data-setuju-laporan/{id}', 'datalaporancontroller@setuju')->name('data-setuju-laporan');
-Route::get('/data-tolak-laporan/{id}', 'datalaporancontroller@tolak')->name('data-tolak-laporan');
-Route::get('/data-detail-laporan/{id}', 'datalaporancontroller@show')->name('data-detail-laporan');
+// //data laporan Harian
+// Route::get('/data-laporan', 'datalaporancontroller@index')->name('data-laporan');
+// Route::get('/data-setuju-laporan/{id}', 'datalaporancontroller@setuju')->name('data-setuju-laporan');
+// Route::get('/data-tolak-laporan/{id}', 'datalaporancontroller@tolak')->name('data-tolak-laporan');
+// Route::get('/data-detail-laporan/{id}', 'datalaporancontroller@show')->name('data-detail-laporan');
 
 
 //Grafi-problem
-Route::get('/grafik-porblem', 'grafikcontroller@index')->name('grafik-problem');
+// Route::get('/grafik-porblem', 'grafikcontroller@index')->name('grafik-problem');
 //PPC
 //perencanaan prod
 Route::get('/perencanaan-ppc', 'ppccontroller@index')->name('perencanaan-ppc');

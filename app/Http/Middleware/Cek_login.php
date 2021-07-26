@@ -21,10 +21,10 @@ class Cek_login
         $noneuser = Auth::guard('pengguna')->user(null);
 
 
-        if ($pgw->roles == "Admin" ||  $pgw->roles == "Operational Manager" || $pgw->roles == "PPC" || $pgw->roles == "Produksi") 
+        if ($pgw->roles == "Admin" ||  $pgw->roles == "Operational Manager" || $pgw->roles == "PPC" || $pgw->roles == "Produksi")
         {
             if (!Auth::guard('pengguna')->check()) {
-                return redirect('login_pengguna');
+                return redirect()->route('login_pengguna');
             }
             if ($pgw->roles == $role) {
                 return $next($request);

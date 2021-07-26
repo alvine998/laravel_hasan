@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-  
+
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;    
+use App\Http\Controllers\Controller;
 use App\Models\tb_pengguna;
 
 class logincontroller extends Controller
@@ -22,32 +22,32 @@ class logincontroller extends Controller
             }elseif ($user->roles == 'Produksi') {
                 return redirect()->intended('/produksi');
             }
-           
+
         }
         return view('pages.login');
     }
-  
+
     public function masuk(Request $request)
     {
-       
+
         request()->validate(
             [
                 'username' => 'required',
                 'password' => 'required',
             ]);
-            
+
         $kredensil = $request->only('username','password');
 
             if (Auth::guard('pengguna')->attempt($kredensil)) {
                 $user = Auth::guard('pengguna')->user();
                 if ($user->roles == 'Admin') {
-                    return redirect()->intended('/admin');
+                    return redirect()->route('dashboard');
                 }elseif ($user->roles == 'Operational Manager') {
-                    return redirect()->intended('/operational-manager');
+                    return redirect()->route('dashboard-op');
                 }elseif ($user->roles == 'PPC') {
-                    return redirect()->intended('/ppc');
+                    return redirect()->route('dashboard-ppc');
                 }elseif ($user->roles == 'Produksi') {
-                    return redirect()->intended('/produksi');
+                    return redirect()->route('dashboard-produksi');
                 }
                 return redirect()->intended('/');
             }
@@ -55,9 +55,9 @@ class logincontroller extends Controller
         return redirect()->route('login_pengguna')
                                 ->withInput()
                                 ->withErrors(['login_gagal' => 'Data yang anda masukan tidak terdaftar.']);
-                                
+
     }
-   
+
 
     public function logout(Request $request)
     {
@@ -65,6 +65,7 @@ class logincontroller extends Controller
         Auth::guard('pengguna')->logout(); // menghapus session yang aktif`
         return redirect('/');
     }
-  
+
 
 }
+
