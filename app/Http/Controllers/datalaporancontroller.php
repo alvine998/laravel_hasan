@@ -35,7 +35,7 @@ class datalaporancontroller extends Controller
     {
         
         $item = tb_laporan::where('id',$id)->update(['status'=>1]); 
-        return redirect('data-laporan');
+        return redirect('dashboard/data-laporan');
         
 
     }
@@ -43,7 +43,7 @@ class datalaporancontroller extends Controller
     {
 
         $item = tb_laporan::where('id', $id)->update(['status'=>2]);
-        return redirect('data-laporan');
+        return redirect('dashboard/data-laporan');
     }
     /**
      * Store a newly created resource in storage.

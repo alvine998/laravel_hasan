@@ -27,14 +27,16 @@
                         <select class="form-control select2" style="width: 100%;" name="id_kustomer" id="id_kustomer" value="{{ old('id_kustomer') }}">
                          <option value=""> --- Pilih Kustomer ---</option>
                         @foreach($mes as $me)
-                        <option value="{{$me->id_kustomer}}-{{$me->id_komponen}}">{{ $me->nama_kustomer }}</option>
+                        <option value="{{$me->id_kustomer}}">{{ $me->nama_kustomer }}</option>
                         @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="id_komponen">Nama komponen</label>
-                        <select class="form-control select2" style="width: 100%;" name="id_komponen" id="id_komponen" >
-                        <option value=""> --- Pilih Komponen ---</option>
+                        <select class="js-example-basic-single" style="width: 100%;" name="id_komponen" id="id_komponen"  value="{{ old('id_komponen') }}">
+                        @foreach($tes as $te)
+                        <option value="{{$te->id_komponen}}">{{ $te->nama_komponen }} </option>
+                         @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -63,34 +65,3 @@
     <!-- /.container-fluid -->
                    
 @endsection
-
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('select[name="id_kustomer"]').on('change', function() {
-            var id_kustomer_id_komponen = $(this).val();
-            pecah = id_kustomer_id_komponen.split("-");
-            id_komponen = pecah[1];
-            if(id_komponen) {
-                $.ajax({
-                    url: '/create1/create1Ajax/'+id_komponen,
-                    type: "GET",
-                    dataType: "json",
-                    success:function(data) {
-                        $('select[name="id_komponen"]').empty();
-                        $.each(data, function(nama_komponen,id_komponen) {
-                            $('select[name="id_komponen"]').append('<option value="'+ id_komponen +' ">'+ nama_komponen +'</option>');
-                            console.log(data);
-                        });
-
-
-                    }
-                });
-            }else{
-                $('select[name="id_komponen"]').empty();
-                
-            }
-        });
-    });
-</script>

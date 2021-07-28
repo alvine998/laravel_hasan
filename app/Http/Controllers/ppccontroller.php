@@ -6,11 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ppcrequest;
 use App\Models\tb_kustomer;
 use App\Models\tb_perencanaan;
-use App\Models\tb_serahterima;
 use App\Models\tb_komponen;
 use Illuminate\Http\Request;
 use illuminate\Support\str;
-use DB;
+
 
 class ppccontroller extends Controller
 {
@@ -22,7 +21,7 @@ class ppccontroller extends Controller
     public function index(Request $request)
     {
        
-         $items = tb_perencanaan::with(['tb_kustomers'])->get();
+         $items = tb_perencanaan::with(['tb_kustomers','tb_komponens'])->get();
         
         return view('pages.PPC.index',[  'items' => $items ]);
     }
@@ -34,18 +33,10 @@ class ppccontroller extends Controller
      */
     public function create()
     { 
-        $mes = DB::table("tb_kustomers")->select("id_kustomer", "id_komponen", "nama_kustomer")->get();
-        return view ('pages.PPC.create',compact('mes'));
+        $mes = tb_kustomer::all();
+        $tes = tb_komponen::all();
+        return view ('pages.PPC.create',compact('mes','tes'));
        
-    }
-
-    ///get AJAX
-    public function create1Ajax($id_komponen)
-    {
-        $komponens = DB::table("tb_komponens")
-                    -> where("id_komponen",$id_komponen)
-                    -> pluck("id_komponen","nama_komponen");
-                    return json_encode($komponens);
     }
 
     /**
@@ -56,9 +47,8 @@ class ppccontroller extends Controller
      */
     public function store(ppcrequest $request)
     {
-        $pecah = $data = explode("-" , $request->id_kustomer);
         tb_perencanaan::create([
-            'id_kustomer' => $pecah[0],
+            'id_kustomer' => $request->id_kustomer,
             'id_komponen'=>$request->id_komponen,
             'tanggal_produksi'=> $request->tanggal_produksi,
             'plan'=> $request->plan,
@@ -87,8 +77,8 @@ class ppccontroller extends Controller
      */
     public function edit($id_perencanaan)
     { 
-       $tes =tb_kustomer::all();
-       $mes =tb_komponen::all();
+       $mes = tb_kustomer::all();
+       $tes = tb_komponen::all();
        $item = tb_perencanaan::with('tb_kustomers','tb_komponens')->findorfail($id_perencanaan);
 
         return view('pages.PPC.edit', compact('item','mes','tes'));
@@ -126,7 +116,7 @@ class ppccontroller extends Controller
      */
     public function destroy($id_perencanaan)
     {
-        $item = tb_waktu::findorFail($id_perencanaan);
+        $item = tb_perencanaan::findorFail($id_perencanaan);
 
         $item->delete();
 

@@ -19,9 +19,9 @@
                   <table class="table table-bordered" id="admintable1" width="100%" cellspacing="0">
                       <thead>
                       <tr>
-                          <th>NO.</th>
-                          <th>nama komponen</th>
-                          <th>nama mesin</th>
+                          <th>No.</th>
+                          <th>Nama Komponen</th>
+                          <th>Nama mesin</th>
                           <th width="10%">Action</th>
                       </tr>
                       </thead>

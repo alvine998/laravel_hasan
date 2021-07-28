@@ -33,7 +33,7 @@ class datappccontroller extends Controller
     {
         
         $item = tb_perencanaan::where('id_perencanaan',$id_perencanaan)->update(['status'=>1]); 
-        return redirect('data-perencanaan');
+        return redirect('dashboard/data-perencanaan');
         
 
     }
@@ -41,7 +41,7 @@ class datappccontroller extends Controller
     {
 
         $item = tb_perencanaan::where('id_perencanaan', $id_perencanaan)->update(['status'=>2]);
-        return redirect('data-perencanaan');
+        return redirect('dashboard/data-perencanaan');
         
 
     }

@@ -36,9 +36,6 @@
                     <li class="nav-item mx-md-2"> <a href="#" class="nav-link active">Home</a>
                 </li>
                 <li class="nav-item mx-md-2"> <a href="#" class="nav-link">About</a>
-                </li>
-                <li class="nav-item mx-md-2"> <a href="#" class="nav-link">Customers</a>
-                </li>
                 </ul>
                 <!--mobile button-->
                 <form action="login" class="form-inline d-sm-block d-md-none">
@@ -88,7 +85,6 @@
               <li> Dimana sistem ini dapat membantu proses laporan harian produksi pada PT Nusa Indah Jaya Utama.</li>
               <li> Pada sistem informasi laporan harian produksi terdapat fitur-fitur penunjang yang dapat membantu proses laporan harian produksi pada PT Nusa Indah Jaya Utama.</li>
             </ul>
-            <a href="#" class="read-more px-4 mt-4">Customers</i></a>
           </div>
         </div>
 

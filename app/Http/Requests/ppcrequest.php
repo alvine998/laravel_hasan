@@ -24,6 +24,8 @@ class ppcrequest extends FormRequest
     public function rules()
     {
         return [
+            'id_kustomer' => 'required',
+            'id_komponen'=>'required',
             'tanggal_produksi' => 'required|date',
             'plan' => 'required|integer',
             'actual' => 'required|integer',

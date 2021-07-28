@@ -19,7 +19,7 @@
                       <tr>
                           <th>nama komponen</th>
                           <th>nama mesin</th>
-                          <th>waktu Standar</th>
+                          <th>waktu Standar/proses</th>
                           <th>jumlah Standar</th>
                           <th>Action</th>
                       </tr>
@@ -45,7 +45,7 @@
                               </td>
                           </tr>
                       @empty
-                          <td colspan="4" class="text-center">
+                          <td colspan="5" class="text-center">
                               Data Kosong
                           </td>
                       @endforelse

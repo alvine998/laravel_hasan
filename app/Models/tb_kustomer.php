@@ -25,14 +25,10 @@ class tb_kustomer extends Model
 
     public function tb_komponens()
     {
-        return $this->belongsTo(tb_komponen::class,'id_komponen','id_komponen');
+        return $this->hasOne(tb_komponen::class,'id_komponen','id_komponen');
     }
     public function tb_perencanaans()
     {
         return $this->hasMany(tb_perencanaan::class,'id_perencanaan','id_perencanaan');
-    }
-    public function tb_serahterimas()
-    {
-        return $this->hasMany(tb_serahterima::class,'id','id');
     }
 }

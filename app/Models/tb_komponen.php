@@ -29,7 +29,6 @@ class tb_komponen extends Model
     {
         return $this->hasMany(tb_kustomer::class,'id_kustomer','id_kustomer');
     }
-
     public function tb_waktus()
     {
         return $this->hasOne(tb_waktu::class,'id','id');
@@ -37,10 +36,6 @@ class tb_komponen extends Model
     public function tb_perencanaans()
     {
         return $this->hasMany(tb_perencanaan::class,'id_perencanaan','id_perencanaan');
-    }
-    public function tb_serahterimas()
-    {
-        return $this->hasMany(tb_serahterima::class,'id','id');
     }
     public function tb_laporans()
     {

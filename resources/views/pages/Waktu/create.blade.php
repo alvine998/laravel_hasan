@@ -39,7 +39,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="waktu_standar">waktu standar</label>
+                        <label for="waktu_standar">waktu standar/proses</label>
                         <input type="text" class="form-control" name="waktu_standar" placeholder="waktu_standar" value="{{ old('waktu_standar') }}">
                     </div>
                     <div class="form-group">

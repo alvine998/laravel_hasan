@@ -6,7 +6,7 @@
 
     <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
-         <h1 class="h3 mb-0 text-gray-800">Tambah data kustomer</h1>
+         <h1 class="h3 mb-0 text-gray-800">Tambah Data Customer</h1>
      </div>
       <!-- Content Row -->
         @if ($errors->any())
@@ -22,17 +22,8 @@
             <div class="card-body">
                 <form action="{{ route('simpan-kustomer') }}" method="post">
                     @csrf
-                     <div class="form-group">
-                        <label for="id_komponen">Nama komponen</label>
-                        <select class="form-control select2" style="width: 100%;" name="id_komponen" id="id_komponen" value="{{ old('id_komponen') }}">
-                        <option value=""> --- Pilih Komponen ---</option>
-                        @foreach ($mes as $item)
-                        <option value="{{ $item->id_komponen }}">{{$item->nama_komponen}}</option>
-                        @endforeach
-                        </select>
-                    </div>
                     <div class="form-group">
-                        <label for="nama_kustomer">Nama kustomer</label>
+                        <label for="nama_kustomer">Nama Customer</label>
                         <input type="text" class="form-control" name="nama_kustomer" placeholder="nama_kustomer" value="{{ old('nama_kustomer') }}">
                     </div>
                     <div class="form-group">

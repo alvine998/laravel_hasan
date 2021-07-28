@@ -18,7 +18,7 @@ class CreateTbPerencanaansTable extends Migration
             $table->unsignedBigInteger('id_kustomer');
             $table->foreign('id_kustomer')->references('id_kustomer')->on('tb_kustomers');
             $table->unsignedBigInteger('id_komponen');
-            $table->foreign('id_komponen')->references('id_komponen')->on('tb_kustomers');
+            $table->foreign('id_komponen')->references('id_komponen')->on('tb_komponens');
             $table->date('tanggal_produksi');
             $table->integer('plan');
             $table->integer('actual');

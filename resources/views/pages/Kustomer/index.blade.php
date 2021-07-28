@@ -9,7 +9,7 @@
         
            <!-- Topbar Search -->
          <a href="{{ route('tambah-kustomer') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-         <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data Kustomer
+         <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data Customer
           </a>
      </div>
 <!-- Content Row -->
@@ -19,11 +19,11 @@
                   <table class="table table-bordered" id="admintable1" width="100%" cellspacing="0">
                       <thead>
                       <tr>
-                          <th>NO.</th>
-                          <th>nama komponen</th>
-                          <th>nama kustomer</th>
-                          <th>email</th>
-                          <th>alamat</th>
+                          <th>No.</th>
+                          <th>Nama Customer</th>
+                          <th>E-mail</th>
+                          <th>Alamat</th>
+                          <th>No Telp</th>
                           <th>Action</th>
                       </tr>
                       </thead>
@@ -32,10 +32,10 @@
                       @forelse($items as $item)
                           <tr>
                               <td>{{ $i++}}</td>
-                              <td>{{ $item->tb_komponens->nama_komponen }}</td>
                               <td>{{ $item->nama_kustomer}}</td>
                               <td>{{ $item->email_kustomer}}</td>
                               <td>{{ $item->alamat_kustomer}}</td>
+                              <td>{{ $item->no_telp}}</td>
                               <td>
                                   <a href="{{ route('edit-kustomer', $item->id_kustomer) }}" class="btn btn-info ">
                                       <i class="fa fa-pencil-alt"></i>

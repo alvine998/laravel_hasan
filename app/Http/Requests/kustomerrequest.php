@@ -24,7 +24,6 @@ class kustomerrequest extends FormRequest
     public function rules()
     {
         return [
-            'id_komponen' => 'required|',
             'nama_kustomer' => 'required|max:255',
             'email_kustomer' => 'required|max:255',
             'alamat_kustomer' => 'required|max:255',

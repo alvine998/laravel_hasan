@@ -56,7 +56,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                 Data Serah Terima</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$tb_serahterimas_setuju}}</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-handshake fa-2x text-gray-300"></i>

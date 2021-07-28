@@ -34,7 +34,7 @@
                     </tr>
                     <tr>
                         <th>Nama Komponens</th>
-                        <td>{{ $item->tb_kustomers->tb_komponens->nama_komponen}}</td>
+                        <td>{{ $item->tb_komponens->nama_komponen}}</td>
                     </tr>
                     <tr>
                         <th>Tanggal Produksi</th>

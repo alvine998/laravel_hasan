@@ -19,7 +19,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Serah Terima Disetujui</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$tb_serahterimas_setuju}}</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-thumbs-up fa-2x text-gray-300"></i>
@@ -37,7 +37,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                 Serah Terima Ditolak</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$tb_serahterimas_tolak}}</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-times fa-2x text-gray-300"></i>

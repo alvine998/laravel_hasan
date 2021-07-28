@@ -16,10 +16,7 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-            <li class="nav-item {{ set_active('serahterima-produksi') }}">
-                <a class="nav-link" href="{{Route ('serahterima-produksi') }}">
-                     <i class="fas fa-clipboard-list"></i>
-                    <span>Serah Terima Barang</span></a>
+        
             </li>
              <li class="nav-item {{ set_active('laporan-harian') }}">
                 <a class="nav-link" href="{{Route ('laporan-harian') }}">

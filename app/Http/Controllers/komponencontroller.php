@@ -8,7 +8,7 @@ use App\Models\tb_mesin;
 use App\Models\tb_komponen;
 use Illuminate\Http\Request;
 use illuminate\Support\str;
-
+use Illuminate\Database\QueryException;
 class komponencontroller extends Controller
 {
     /**
@@ -107,9 +107,11 @@ class komponencontroller extends Controller
      */
     public function destroy($id_komponen)
     {
-        $item = tb_komponen::findorFail($id_komponen);
-
-        $item->delete();
+        try { 
+            $item = tb_komponen::where("id_komponen",$id_komponen)->delete();
+        } catch (QueryException $e) { 
+            return redirect()->route('komponen')->with('toast_info', 'data tidak bisa dihapus');
+        }
 
         return redirect()->route('komponen')->with('toast_info', 'data berhasil dihapus');
     }

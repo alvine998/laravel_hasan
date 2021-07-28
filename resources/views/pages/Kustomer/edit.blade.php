@@ -40,10 +40,6 @@
                         <label for="no_telp">no telepon</label>
                         <input type="text" class="form-control" name="no_telp" placeholder="no_telp" value="{{ $item->no_telp }}">
                     </div>
-                     <div class="form-group">
-                        <label for="id_komponen">Nama komponen</label>
-                        <input type="text" class="form-control" name="id_komponen" readonly class="form-control-plaintext" value="{{ $item->tb_komponens->nama_komponen }}">                  
-                          </div>
                     <button type="submit" class="btn btn-primary btn-sm">
                         Ubah
                     </button>

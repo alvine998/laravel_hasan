@@ -15,8 +15,6 @@ class CreateTbKustomersTable extends Migration
     {
         Schema::create('tb_kustomers', function (Blueprint $table) {
             $table->bigIncrements('id_kustomer');
-            $table->unsignedBigInteger('id_komponen');
-            $table->foreign('id_komponen')->references('id_komponen')->on('tb_komponens');
             $table->string('nama_kustomer');
             $table->string('email_kustomer');
             $table->string('alamat_kustomer');

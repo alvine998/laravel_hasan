@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\kustomerrequest;
 use App\Models\tb_kustomer;
-use App\Models\tb_komponen;
 use Illuminate\Http\Request;
 use illuminate\Support\str;
-
+use Illuminate\Database\QueryException;
 class kustomercontroller extends Controller
 {
     /**
@@ -19,7 +18,7 @@ class kustomercontroller extends Controller
     public function index(Request $request)
     {
         
-         $items = tb_kustomer::with(['tb_komponens'])->get();
+         $items = tb_kustomer::all();
     
         return view('pages.Kustomer.index',[  'items' => $items ]);
     }
@@ -31,8 +30,8 @@ class kustomercontroller extends Controller
      */
     public function create()
     { 
-        $mes = tb_komponen::all();
-        return view('pages.Kustomer.create',compact('mes'));
+       
+        return view('pages.Kustomer.create');
     }
 
     /**
@@ -46,7 +45,6 @@ class kustomercontroller extends Controller
 
         tb_kustomer::create([
             'id_kustomer' => $request->id_kustomer,
-            'id_komponen'=>$request->id_komponen,
             'nama_kustomer'=> $request->nama_kustomer,
             'email_kustomer'=> $request->email_kustomer,
             'alamat_kustomer'=> $request->alamat_kustomer,
@@ -74,9 +72,8 @@ class kustomercontroller extends Controller
      */
     public function edit($id_kustomer)
     { 
-       $mes = tb_komponen::all();
-       $item = tb_kustomer::with('tb_komponens')->findorfail($id_kustomer);
-        return view('pages.Kustomer.edit', compact('item','mes'));
+       $item = tb_kustomer::findorfail($id_kustomer);
+        return view('pages.Kustomer.edit', compact('item'));
 
     }
 
@@ -98,7 +95,7 @@ class kustomercontroller extends Controller
         $tb_kustomers->no_telp= $request->no_telp;
         $tb_kustomers->save();
 
-        $item = tb_kustomer::findOrFail($id_kustomer    );
+        $item = tb_kustomer::findOrFail($id_kustomer);
 
 
         return redirect()->route('kustomer')->with('toast_success', 'data berhasil diubah');
@@ -113,9 +110,11 @@ class kustomercontroller extends Controller
      */
     public function destroy($id_kustomer)
     {
-        $item = tb_kustomer::findorFail($id_kustomer);
-
-        $item->delete();
+        try { 
+            $item = tb_kustomer::where("id_kustomer",$id_kustomer)->delete();
+        } catch (QueryException $e) { 
+            return redirect()->route('kustomer')->with('toast_info', 'data tidak bisa dihapus');
+        }
 
         return redirect()->route('kustomer')->with('toast_info', 'data berhasil dihapus');
     }

@@ -7,7 +7,7 @@ use App\Http\Requests\mesinrequest;
 use App\Models\tb_mesin;
 use Illuminate\Http\Request;
 use illuminate\Support\str;
-
+use Illuminate\Database\QueryException;
 class mesincontroller extends Controller
 {
     /**
@@ -103,9 +103,12 @@ class mesincontroller extends Controller
      */
     public function destroy($id_mesin)
     {
-        $item = tb_mesin::findorFail($id_mesin);
-
-        $item->delete();
+    try { 
+        $item = tb_mesin::where("id_mesin",$id_mesin)->delete();
+    } catch (QueryException $e) { 
+        return redirect()->route('mesin')->with('toast_info', 'data tidak bisa dihapus');
+    }
+       
 
         return redirect()->route('mesin')->with('toast_info', 'data berhasil dihapus');
     }

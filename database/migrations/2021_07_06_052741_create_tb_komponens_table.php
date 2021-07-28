@@ -16,7 +16,7 @@ class CreateTbKomponensTable extends Migration
         Schema::create('tb_komponens', function (Blueprint $table) {
             $table->bigIncrements('id_komponen');
             $table->unsignedBigInteger('id_mesin');
-            $table->foreign('id_mesin')->references('id_mesin')->on('tb_mesins');
+            $table->foreign('id_mesin')->references('id_mesin')->on('tb_mesins')->onDelete('no action');
             $table->string('nama_komponen');
             $table->timestamps();
         });

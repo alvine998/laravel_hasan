@@ -26,10 +26,6 @@
                      <i class="fas fa-database"></i>
                     <span>Data perencanaan prod</span></a>
             </li>
-            <li class="nav-item {{ set_active('data-serahterima') }}">
-                <a class="nav-link" href="{{ Route ('data-serahterima') }}">
-                     <i class="fas fa-database"></i>
-                    <span>Data serah terima barang</span></a>
             </li>
             <li class="nav-item {{ set_active('data-laporan') }}">
                 <a class="nav-link" href="{{ Route ('data-laporan') }}">

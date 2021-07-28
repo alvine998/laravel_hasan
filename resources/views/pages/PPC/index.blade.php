@@ -12,7 +12,7 @@
          <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Perencanaan
           </a>
      </div>
-      <a href="{{ route('detail-produksi') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+      <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
          <i class="fas fa-eye fa-sm text-white-50"></i> Jumlah Actual Pasca Produksi
           </a>
 <!-- Content Row -->
@@ -22,7 +22,8 @@
                   <table class="table table-bordered" id="ppctable1" width="100%" cellspacing="0">
                       <thead>
                       <tr>
-                          <th>nama kustomer</th>
+                          <th>Nama Customer</th>
+                          <th>Nama Komponen</th>
                           <th>tanggal produksi</th>
                           <th>plan</th>
                           <th>actual</th>
@@ -34,6 +35,7 @@
                       @forelse($items as $item)
                           <tr>
                               <td>{{ $item->tb_kustomers->nama_kustomer }}</td>
+                              <td>{{ $item->tb_komponens->nama_komponen }}</td>
                               <td>{{ $item->tanggal_produksi }}</td>
                               <td>{{ $item->plan }}</td>
                               <td>{{ $item->actual}}</td>
@@ -58,7 +60,7 @@
                               </td>
                           </tr>
                       @empty
-                          <td colspan="4" class="text-center">
+                          <td colspan="9" class="text-center">
                               Data Kosong
                           </td>
                       @endforelse
